@@ -2,7 +2,10 @@ import { useRef, useState } from "react";
 import Header from "./Header";
 import { CheckValidData } from "../utils/Validate";
 import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"; 
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login =()=> {
 
@@ -10,6 +13,9 @@ const Login =()=> {
 
     const [errorMessage, setErrorMessage] = useState(null);
 
+    const dispatch=useDispatch();
+
+    const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
 
@@ -35,7 +41,19 @@ const Login =()=> {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+                  }).then(() => {
+                    // Profile updated!
+                    //Store the update in to the redux store
+                    const {uid, email, displayName, photoURL }  = auth.currentUser; 
+                    dispatch(addUser({uid:uid, email:email, displayName: displayName, photoURL }));
+                  }).catch((error) => {
+                    // An error occurred
+                    setErrorMessage(error.message);
+                  });
                 console.log(user);
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -58,8 +76,6 @@ const Login =()=> {
                 setErrorMessage(errorCode+"-"+errorMessage);
             });
         }
-
-
     }
 
     return( 
@@ -70,7 +86,7 @@ const Login =()=> {
             </div>
             <form onSubmit={(e) => e.preventDefault()}className="w-3/12 absolute p-12 rounded-lg bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-75">
                 <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-                {!isSignInForm && <input type="name" placeholder="Enter Full Name" className="p-4 my-4 w-full bg-gray-700"/>}
+                {!isSignInForm && <input ref={name} type="name" placeholder="Enter Full Name" className="p-4 my-4 w-full bg-gray-700"/>}
                 <input ref={email} type="text" placeholder="Enter Email Address" className="p-4 my-4 w-full bg-gray-700"/>
                 <input ref={password} type="password" placeholder="Enter Password" className="p-4 my-4 w-full bg-gray-700"/>   
                 <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
