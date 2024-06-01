@@ -5,25 +5,9 @@ import { useSelector } from "react-redux";
 
 const VideoTitle = ({ title, overview, movieId }) => {
    
-    const movieImage = useSelector((store)=> store.movies.MovieImage)
+    const movieImage = useSelector((store)=> store.movies?.MovieImage)
 
     useMovieImage(movieId);
-
-    // const fetchData = async (movieId) => {
-    //     try {
-    //         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, API_OPTIONS)
-    //         const data = await response.json();
-    //         // console.log(data);
-    //         // console.log(data.backdrops[0].file_path);
-    //         setImageData(data.backdrops[0].file_path);
-    //     } catch (error) {
-    //         console.error("Error fetching image data:", error);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     fetchData(movieId);
-    // }, [movieId]);
 
     return (
         <div className="w-screen aspect-video pt-[20%] px-24 absolute text-white bg-gradient-to-r from-black">

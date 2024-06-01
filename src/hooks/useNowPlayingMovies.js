@@ -8,8 +8,6 @@ const useNowPlayingMovies = () => {
 //Fetch data from API and dispatch it to the redux store
 const dispatch = useDispatch();
 
-    
-
     useEffect(()=>{
         getNowPlayingMovies();    
     },[]);

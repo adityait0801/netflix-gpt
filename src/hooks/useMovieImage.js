@@ -16,7 +16,7 @@ const useMovieImage = (movieId)=> {
             // console.log(data);
             // console.log(data.backdrops[0].file_path);
             // setImageData(data.backdrops[0].file_path);
-            dispatch(addMovieImage(data.backdrops[0].file_path))
+            dispatch(addMovieImage(data.backdrops[10].file_path))
         } catch (error) {
             console.error("Error fetching image data:", error);
         }
