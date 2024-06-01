@@ -25,8 +25,8 @@ const Login =()=> {
 
     const handleButtonClick =() => {    
 
-        console.log(email.current.value);
-        console.log(password.current.value);
+        // console.log(email.current.value);
+        // console.log(password.current.value);
 
         const message = CheckValidData(email.current.value,password.current.value);
         setErrorMessage(message);
@@ -86,7 +86,8 @@ const Login =()=> {
             </div>
             <form onSubmit={(e) => e.preventDefault()}className="w-3/12 absolute p-12 rounded-lg bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-75">
                 <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-                {!isSignInForm && <input ref={name} type="name" placeholder="Enter Full Name" className="p-4 my-4 w-full bg-gray-700"/>}
+                {!isSignInForm && 
+                <input ref={name} type="name" placeholder="Enter Full Name" className="p-4 my-4 w-full bg-gray-700"/>}
                 <input ref={email} type="text" placeholder="Enter Email Address" className="p-4 my-4 w-full bg-gray-700"/>
                 <input ref={password} type="password" placeholder="Enter Password" className="p-4 my-4 w-full bg-gray-700"/>   
                 <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
