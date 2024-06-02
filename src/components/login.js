@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { Netflix_BG_URL } from "../utils/constant";
 
 const Login =()=> {
 
@@ -82,7 +83,7 @@ const Login =()=> {
         <div>
         <Header/>
             <div className="absolute"> 
-                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_small.jpg" alt="logo"/>
+                <img src={Netflix_BG_URL} alt="logo"/>
             </div>
             <form onSubmit={(e) => e.preventDefault()}className="w-3/12 absolute p-12 rounded-lg bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-75">
                 <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>

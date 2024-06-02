@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LOGO } from "../utils/constant";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
 
@@ -16,6 +17,9 @@ const Header = () => {
     
     const user = useSelector(store=>store.user);
 
+    const handleGptSubmitButton =()=> {
+        dispatch(toggleGptSearchView())
+    }
       //We have used effect because we have to do signIn or signUp only one time in website
       useEffect( ()=> {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -50,7 +54,11 @@ const Header = () => {
             /> 
            {/* when user is signed In then only show/load this */}
             { user && 
-                <div className="flex p-4">
+                <div className="flex p-2">
+                <button className="py-2 px-4 my-2 mx-4 mt-2 bg-purple-700 text-white rounded-lg" 
+                    onClick={handleGptSubmitButton}>
+                    GPT Search  
+                </button>
                 <img className="w-12 h-12" 
                 src={user?.photoURL}
                 alt="usericon"
