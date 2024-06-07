@@ -10,7 +10,7 @@ const useMovieTrailer=(movieId)=> {
 
     //fetch trailer video, to fetch trailer we will need movie_id
     useEffect(()=>{
-        getMovieVideos();
+         getMovieVideos();
     },[]);
 
     const getMovieVideos = async() => {

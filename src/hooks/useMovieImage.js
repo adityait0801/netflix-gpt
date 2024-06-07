@@ -9,6 +9,10 @@ const useMovieImage = (movieId)=> {
 
     // const [imageData, setImageData] = useState("");
 
+    useEffect(() => {
+        fetchData(movieId);
+     }, [movieId]);
+ 
     const fetchData = async (movieId) => {
         try {
             const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, API_OPTIONS)
@@ -21,11 +25,6 @@ const useMovieImage = (movieId)=> {
             console.error("Error fetching image data:", error);
         }
     };
-
-    useEffect(() => {
-        fetchData(movieId);
-    }, [movieId]);
-
 }
 
 export default useMovieImage;

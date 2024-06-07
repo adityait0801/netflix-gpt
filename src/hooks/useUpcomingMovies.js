@@ -9,7 +9,7 @@ const useUpcomingMovies = () => {
 const dispatch = useDispatch();
 
     useEffect(()=>{
-        getUpcomingMovies();    
+      getUpcomingMovies();    
     },[]);
 
     const getUpcomingMovies = async () => {

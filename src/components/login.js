@@ -83,14 +83,20 @@ const Login =()=> {
         <div>
         <Header/>
             <div className="absolute"> 
-                <img src={Netflix_BG_URL} alt="logo"/>
+                <img src={Netflix_BG_URL} 
+                className="h-screen object-cover md:h-auto"
+                alt="logo"/>
             </div>
-            <form onSubmit={(e) => e.preventDefault()}className="w-3/12 absolute p-12 rounded-lg bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-75">
+            <form onSubmit={(e) => e.preventDefault()} 
+            className="w-full md:w-3/12 absolute p-12 rounded-lg bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-75">
                 <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
                 {!isSignInForm && 
-                <input ref={name} type="name" placeholder="Enter Full Name" className="p-4 my-4 w-full bg-gray-700"/>}
-                <input ref={email} type="text" placeholder="Enter Email Address" className="p-4 my-4 w-full bg-gray-700"/>
-                <input ref={password} type="password" placeholder="Enter Password" className="p-4 my-4 w-full bg-gray-700"/>   
+                <input ref={name} type="name" placeholder="Enter Full Name"
+                 className="p-4 my-4 w-full bg-gray-700"/>}
+                <input ref={email} type="text" placeholder="Enter Email Address" 
+                className="p-4 my-4 w-full bg-gray-700"/>
+                <input ref={password} type="password" placeholder="Enter Password" 
+                className="p-4 my-4 w-full bg-gray-700"/>   
                 <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
                 <button className="p-4 my-6 w-full rounded-lg bg-red-700" onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
                 <p className="p-2 cursor-pointer" onClick={toggleSignInForm}> {isSignInForm ? "New to Netflix ? Sign Up Now" : "Already Registered. Sign In"}</p>

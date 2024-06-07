@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { IMG_CDN_URL } from "../utils/constant";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ posterPath }) => {
+
   if (!posterPath) return null;
   return (
     <div className="w-36 md:w-48 pr-4">
@@ -8,4 +11,5 @@ const MovieCard = ({ posterPath }) => {
     </div>
   );
 };
+
 export default MovieCard;
