@@ -17,6 +17,8 @@ const Header = () => {
     
     const user = useSelector(store=>store.user);
 
+    const showGptSearch = useSelector(store=> store.gpt.showGptSearch)
+
     const handleGptSubmitButton =()=> {
         dispatch(toggleGptSearchView())
     }
@@ -57,7 +59,7 @@ const Header = () => {
                 <div className="flex p-2 justify-between">
                 <button className="py-2 px-4 my-2 mx-4 mt-2 bg-purple-700 text-white rounded-lg" 
                     onClick={handleGptSubmitButton}>
-                    GPT Search 
+                    { showGptSearch ? "Homepage" : "Chat with AI"}
                 </button>
                 {/* <img className="hidden md:inline-block w-12 h-12" 
                 src={user?.photoURL}
